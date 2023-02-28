@@ -6,13 +6,23 @@
 <body>
 	<h1>Title Insurance Premium Calculator</h1>
 	<form>
+    <label for="state">Select Property State</label>
+    <select id="state" name="state">
+			<option value="Minnesota">Minnesota</option>
+			<option value="Wisconsin">Wisconsin</option>
+      <option value="Florida">Florida</option>
+      <option value="Illinois">Illinois</option>
+		</select><br><br>
 		<label for="sales-price">Sales Price:</label>
 		<input type="number" id="sales-price" name="sales-price"><br><br>
-		<label for="policy-type">Policy Type:</label>
+    <label for="loan-amount">Loan Amount:</label>
+		<input type="number" id="loan-amount" name="loan-amount"><br><br>
+		<label for="policy-type">Select Owners Policy Type:</label>
 		<select id="policy-type" name="policy-type">
 			<option value="standard">Standard Coverage Owners Policy</option>
 			<option value="extended">Extended Coverage Homeowners Policy</option>
 		</select><br><br>
+    
 		<button type="button" onclick="calculatePremium()">Calculate Premium</button>
 	</form>
 	<p id="result"></p>
@@ -41,7 +51,7 @@
 
 			// Display the premium to the user
 			const result = document.getElementById("result");
-			result.innerHTML = `Title insurance premium: $${premium.toFixed(2)}`;
+			result.innerHTML = `Owner's Title Insurance Premium: $${premium.toFixed(2)}`;
 		}
 	</script>
 </body>
