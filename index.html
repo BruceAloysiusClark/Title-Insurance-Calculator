@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Title Insurance Premium Calculator</title>
+</head>
+<body>
+	<h1>Title Insurance Premium Calculator</h1>
+	<form>
+		<label for="sales-price">Sales Price:</label>
+		<input type="number" id="sales-price" name="sales-price"><br><br>
+		<label for="policy-type">Policy Type:</label>
+		<select id="policy-type" name="policy-type">
+			<option value="standard">Standard Coverage Owners Policy</option>
+			<option value="extended">Extended Coverage Homeowners Policy</option>
+		</select><br><br>
+		<button type="button" onclick="calculatePremium()">Calculate Premium</button>
+	</form>
+	<p id="result"></p>
+	<script>
+		function calculatePremium() {
+			// Get the sales price entered by the user
+			const salesPrice = Math.ceil(document.getElementById("sales-price").value / 1000) * 1000;
+
+			// Get the policy type selected by the user
+			const policyType = document.getElementById("policy-type").value;
+
+			// Define the tiers of rates per 1,000 of sales price
+			let premium = 0;
+			if (salesPrice <= 150000) {
+				premium = salesPrice * (3.5 / 1000);
+			} else if (salesPrice > 150000 && salesPrice <= 300000) {
+				premium = 150000 * (3.5 / 1000) + (salesPrice - 150000) * (2.75 / 1000);
+			} else {
+				premium = 150000 * (3.5 / 1000) + 150000 * (2.75 / 1000) + (salesPrice - 300000) * (2 / 1000);
+			}
+
+			// Apply the premium increase for extended coverage homeowners policy
+			if (policyType === "extended") {
+				premium *= 1.1;
+			}
+
+			// Display the premium to the user
+			const result = document.getElementById("result");
+			result.innerHTML = `Title insurance premium: $${premium.toFixed(2)}`;
+		}
+	</script>
+</body>
+</html>
